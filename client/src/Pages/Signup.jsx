@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {styled} from 'styled-components'
+import { Signupapicall } from './Apicall';
 
 const Container=styled.div`
     width: 50%;
@@ -19,6 +20,7 @@ const Input=styled.input`
     border-radius: 10px;
     text-align: center;
     margin-left: 15%;
+    font-size: 17px;
 `;
 const Btn=styled.button`
     width: 70%;
@@ -35,15 +37,37 @@ const Headline=styled.p`
 `;
 
 const Signup = () => {
+
+const [name,setName]=useState('')
+const [email,setEmail]=useState('')
+const [mobile,setMobile]=useState(Number)
+const [password,setPassword]=useState('')
+const [image,setImage]=useState({})
+
+let formdata=new FormData()
+formdata.append('name',name)
+formdata.append('email',email)
+formdata.append('mobile',mobile)
+formdata.append('password',password)
+formdata.append('image',image)
+
+
+
+const display =(e)=>{
+  e.preventDefault();
+  console.log('first testing',formdata);
+  Signupapicall(formdata)
+}
+
   return (
     <Container>
     <Headline>Signup</Headline>
- <form>
-   <Input type='text' placeholder='Name' required={true}/>
-   <Input type='email' placeholder='E-mail' required={true}/>
-   <Input type='tel' placeholder='Mobile' required={true}/>
-   <Input type='password' placeholder='Password' required={true}/>
-   <Input type='file'/>
+ <form onSubmit={display} encType='multipart/form-data'>
+   <Input type='text' placeholder='Name' required={true}  value={name} onChange={(e)=>setName(e.target.value)}/>
+   <Input type='email' placeholder='E-mail' required={true} value={email} onChange={(e)=>setEmail(e.target.value)}/>
+   <Input type='tel' placeholder='Mobile' required={true} value={mobile} onChange={(e)=>setMobile(e.target.value)}/>
+   <Input type='password' placeholder='Password' required={true} value={password} onChange={(e)=>setPassword(e.target.value)}/>
+   <Input type='file' filename='image'  onChange={(e)=>setImage(e.target.files[0])}/>
    <Btn type='submit'>Signup</Btn>
  </form>
 </Container>

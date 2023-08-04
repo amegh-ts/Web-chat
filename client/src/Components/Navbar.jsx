@@ -1,6 +1,7 @@
 import React from 'react'
 import { styled } from 'styled-components'
-
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../Redux/redux';
 const Container=styled.div`
 display:flex ;
 width: 98%;
@@ -40,10 +41,15 @@ const Logout=styled.button`
 
 const Navbar = () => {
   
+  const dispatch=useDispatch()
+
+const LogoutUser=()=>{
+dispatch(logoutUser())
+}
 
   return (
     <Container>
-        <Logout>Logout</Logout>
+        <Logout onClick={LogoutUser}>Logout</Logout>
       <Headline>Chat-Web</Headline>
     </Container>
   )
