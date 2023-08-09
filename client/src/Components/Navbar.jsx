@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../Redux/redux';
 const Container=styled.div`
 display:flex ;
@@ -36,12 +36,25 @@ const Logout=styled.button`
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color:#d4d4d4 ;
     cursor: pointer;
+`;
+
+const Name=styled.div`
+font-size:19px ;
+color:white ;
+margin:7px ;
+`;
+
+const Profile =styled.img`
+border-radius:20px ;
 `
+
 
 
 const Navbar = () => {
   
   const dispatch=useDispatch()
+  const user=useSelector((state)=>state.loginuser.userData)
+  console.log(user);
 
 const LogoutUser=()=>{
 dispatch(logoutUser())
@@ -49,8 +62,10 @@ dispatch(logoutUser())
 
   return (
     <Container>
+      <Profile src={`/Images/${user[0].image}`}/>
+      <Name>{user[0]?.name}</Name>
         <Logout onClick={LogoutUser}>Logout</Logout>
-      <Headline>Chat-Web</Headline>
+      <Headline>Dark-Web</Headline>
     </Container>
   )
 }

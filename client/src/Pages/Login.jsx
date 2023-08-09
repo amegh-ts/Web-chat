@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {styled} from 'styled-components'
 import { Loginapicall } from './Apicall';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 const Container=styled.div`
     width: 50%;
     height: 500px;
@@ -55,7 +56,8 @@ Loginapicall({email,password},dispatch)
         <Input type='text' placeholder='email' required={true} value={email} onChange={(e)=>setEmail(e.target.value)}/>
         <Input type='password' placeholder='Password' required={true} value={password} onChange={(e)=>setPassword(e.target.value)}/>
         <Btn type='submit'>Login</Btn>
-      </form>
+        <Link to={'signup'}><p>Signup</p></Link>
+      </form> 
     </Container>
   )
 }
