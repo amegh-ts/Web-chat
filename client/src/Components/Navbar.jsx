@@ -54,7 +54,7 @@ const Navbar = () => {
   
   const dispatch=useDispatch()
   const user=useSelector((state)=>state.loginuser.userData)
-  console.log(user);
+  
 
 const LogoutUser=()=>{
 dispatch(logoutUser())

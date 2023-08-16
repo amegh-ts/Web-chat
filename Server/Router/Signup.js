@@ -54,6 +54,17 @@ router.post('/login', async (req,res)=>{
   }catch(err){
     res.status(500).json(err)
   }
+}),
+
+router.get('/',async (req,res)=>{
+  const userId=req.query.userId
+  try{
+const userData=await user.find({_id:userId})
+res.status(200).json(userData)
+console.log('userData',userData);
+  }catch(err){
+    res.status(500).json(err)
+  }
 })
 
 module.exports=router

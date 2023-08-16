@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 
 const Container=styled.div`
@@ -81,6 +82,8 @@ background-color: #d4d4d4;
 
 
 const Message = () => {
+
+
   return (
     <Container>
       <Sender></Sender>
